@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <input type="text" value="111">
+    <h2 class="xixi">0</h2>
+    <button class="btnClick">+1</button>
+    <script>
+   
+     const data = {
+       name : 'shen',
+       age : 0
+     }
+     
+     //变成响应式数据
+     observer(data);
+     function observer(target) {
+       console.log('observer');
+       if (typeof target !== 'object' || target === null) {
+         return target;
+       }
+       for (let i in target) {
+        defineReative(target, i, target[i])
+       }
+     }
+      function defineReative(target, key, value) {
+        console.log('defineReative');
+        Object.defineProperty(target, key, {
+        get: function() {
+          console.log('hah111');
+          return value;
+        },
+        set: function(newValue) {
+          console.log('hah');
+          if (newValue !== value) {
+            value = newValue
+            document.getElementsByClassName('xixi')[0].innerHTML = newValue;
+          }
+        }
+      })
+      }
+      document.getElementsByClassName('btnClick')[0].addEventListener('click',() => {  data.age += 1},false)
+    </script>
+  </body>
+</html>

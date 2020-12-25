@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      @keyframes move{
+        0% {
+          left:  0px;
+        }
+        50% {
+          left: 1000px;
+        }
+        100% {
+          left: 0;
+        }
+      }
+      .main_box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        animation:move 2s infinite
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="main_box">
+      </div>
+    </div>
+    <script>
+    function feibonacci (n) {
+      var n1 = 1, n2 = 1, sum;
+      for (let i =  1; i < n; i++) {
+        sum = n1 + n2;
+        n1 = n2;
+        n2 = sum;
+        console.log(n1);
+        console.log(n2);
+        console.log(sum);
+      }
+      return sum
+    }
+    console.log(feibonacci(4))
+
+  </script>
+  </body>
+</html>
