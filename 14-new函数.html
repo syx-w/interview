@@ -9,34 +9,25 @@
 
 <body>
   <script>
-    // 构造器函数
-    let Parent = function (name, age) {
-      this.name = name;
-      this.age = age;
-    };
-
-    Parent.prototype.sayName = function () {
-      console.log(this.name);
-    };
-
-    //自己定义的new方法
-    let newMethod = function (Parent, ...rest) {
-      // 1.以构造器的prototype属性为原型，创建新对象；
-      let child = Object.create(Parent.prototype);
-      // 2.将this和调用参数传给构造器执行
-      Parent.apply(child, rest);
-      // 3.返回第一步的对象
-      return child;
-    };
-    //创建实例，将构造函数Parent与形参作为参数传入
-    const child = newMethod(Parent, 'echo', 26);
-    child.sayName() //'echo';
-
-    //最后检验，与使用new的效果相同
-    child instanceof Parent//true
-    child.hasOwnProperty('name')//true
-    child.hasOwnProperty('age')//true
-    child.hasOwnProperty('sayName')//false
+    function Dog(name, age) {
+      this.name = name
+      this.age = age
+    }
+    Dog.prototype.sayName = function () {
+      console.log(this.name)
+      console.log(this.age)
+    }
+    // 上面是本身Dog
+    function _new(fn, ...args) {   // ...args为ES6展开符,也可以使用arguments
+      //先用Object创建一个空的对象, 并将他爹原型上的属性或者方法给他
+      const obj = Object.create(fn.prototype)  //fn.prototype代表 用当前对象的原型去创建
+      //现在obj就代表Dog了,但是参数和this指向没有修改，他爹自己东西和后加进来的东西，改变this指向
+      const rel = fn.apply(obj, args)
+      //正常规定,如何fn返回的是null或undefined(也就是不返回内容),我们返回的是obj,否则返回rel  因为new的话会执行父函数
+      return rel instanceof Object ? rel : obj
+    }
+    var _newDog = _new(Dog, '这是用_new出来的小狗', 'hehe')
+    _newDog.sayName()
   </script>
 </body>
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 冒泡  （每次遍历将最小数放到最后）
+    function maopao(arr) {
+      if (arr.length <= 0 || arr === null) return []
+      for (let i = arr.length - 1; i >= 0; i--) {
+        for (let j = 0; j < i; j++) {
+          if (arr[j] < arr[j + 1]) {
+            let temp = arr[j]
+            arr[j] = arr[j + 1]
+            arr[j + 1] = temp
+          }
+        }
+      }
+      return arr
+    }
+    console.log(maopao([2, 3, 4, 5, 611, 5, 43, 345, 5, 666, 33]));
+
+    // 快排 （小放左）
+    function quickpai(arr) {
+      if (arr.length < 2) return arr
+      let leftArr = []
+      let rightArr = []
+      let midArr = []
+      let curr = arr[0]
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === curr) {
+          midArr.push(arr[i])
+        } else if (arr[i] > curr) {
+          rightArr.push(arr[i])
+        } else {
+          leftArr.push(arr[i])
+        }
+      }
+      return [...quickpai(leftArr), ...midArr, ...quickpai(rightArr)]
+    }
+    console.log(quickpai([3, 4, 55, 23, 66, 85, 32, 662, 34]));
+  </script>
+</body>
+
+</html>

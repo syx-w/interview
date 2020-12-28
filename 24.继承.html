@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Animal(name) {
+      this.name = name || 'Animal';
+      this.sleep = function () {
+        console.log(this.name + '正在睡觉');
+      }
+    }
+    Animal.prototype.eat = function (food) {
+      console.log(this.name + '正在吃' + food)
+    }
+
+    /* 
+     * 一、原型链继承：
+      给子类型添加方法，一定要在实现继承之后，否则会在将指针指向父类型的实例，则方法为空
+      子类prototype继承父类实例化对象， 会继承父类的实例和属性，但是this指向不对
+     * 1.最简单，最容易实现2.实例是子类的实例，实际上也是父类的一个实例3.父类新增原型方法/原型属性，子类都能访问到
+     * 缺点：1.所有子类的实例的原型都共享同一个超类实例的属性和方法 2.无法实现多继承 3.不能在父类型中传递参数
+     */
+    function Cat() {
+    }
+    Cat.prototype = new Animal();
+
+    /*
+    * 二、借用构造函数
+    * 优点：1.可以实现多继承 2.可以在父类中传递参数  3.操作简单，之前开发人员用这个方法
+    * 缺点：1.无法继承父类原型上的方法和属性 2. 没有复用性可言
+    */
+    function Cat() {
+      Animal.call(this);
+    }
+
+    /*
+    * 三、组合继承（原型链+借用构造函数）：
+    * 优点：
+    * 缺点：在一个子类型的原型中添加方法，其他子类型也会发生改变
+    */
+    function Cat() {
+      Animal.call(this)
+    }
+    Cat.prototype = new Animal()
+
+    /*
+    * 四、原型式继承
+    * 优点：1.继承了父类的构造函数的和原型上的属性和方法
+    * 缺点：1.无法在子类上添加自己的属性和方法 , 无法复用
+    */
+    function Cat() {
+      var animal = new Animal();
+      return animal;
+    }
+
+    /*
+     * 四、寄生式继承
+     * 原理：在原型式继承的基础上新增一些函数或属性
+     * 缺点:有重复属性  优点：this指向问题得到解决，继承父类方法和原型方法
+     * 
+     */
+    function createObj(o) {
+      var clone = object.create(o);
+      clone.sayName = function () {
+        console.log('hi');
+      }
+      return clone;
+    }
+
+    /*
+     * 五、寄生组合继承
+     * 原理：在原型式继承的基础上新增一些函数或属性，
+     * 优点：可以继承父类的属性和原型上的方法，实例间不会共享引用属性，基本属性也可以继承变成自己的属性，不会执行两遍父类
+     */
+    function Cat() {
+      Animal.call(this)
+    }
+    function F() { }
+    F.prototype = Animal.prototype
+    Cat.prototype = new F()
+
+    /*
+     * 原型继承3：拷贝继承
+    */
+    function Cat() {
+    }
+    Cat.prototype = {
+      ...Animal.prototype,
+      ...Cat.prototype
+    }
+
+
+    /*
+    * class继承  基于寄生组合继承来实现的；
+    * 寄生组合式继承原理：
+    * 1.使用借用构造函数(call)来继承父类this声明的属性/方法
+    * 2.通过寄生式封装函数设置父类prototype为子类prototype的原型来继承父类的prototype声明的属性/方法
+    */
+    class Parent5 {
+      constructor() {
+        this.name = 'Parent5'
+        this.arr = [1, 2, 3]
+      }
+      say() {
+        console.log(this.name)
+      }
+    }
+    class Child5 extends Parent5 {
+      constructor() {
+        super() //通过super()调用父类构造函数
+        this.type = "Child5"
+      }
+    }
+
+  </script>
+</body>
+
+</html>

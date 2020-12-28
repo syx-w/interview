@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // *******************************************************查找英文文章里出现次数最多的字母和次数
+    /*  let EngliseArc = 'eee wo ai ni hehe  haha  enen  o sdf erf  oo  jrjr cvv  sf'
+     let newArr = []
+     let maxNum = 0
+     let nowArr = []
+     for (let i = EngliseArc.length - 1; i > 0; i--) {
+       let nowN = EngliseArc.charAt(i)
+       if (nowN === ' ') continue
+       newArr[nowN] = newArr[nowN] ? newArr[nowN] + 1 : 1
+       console.log(newArr);
+     }
+     for (let key in newArr) {
+       if (newArr[key] > maxNum) {
+         maxNum = newArr[key]
+         nowArr = key
+       } else if (newArr[key] = maxNum) {
+         newArr.push(key)
+       }
+     }
+     console.log(...nowArr + '出现的次数最多了，出现了' + maxNum + '次'); */
+    // *********************************************************************两个字符串找最大公共子串
+    //查找两个字符串的最长公共子串
+    function findSubStr(s1, s2) {
+      var S = sstr = "", L1 = s1.length, L2 = s2.length;
+      if (L1 > L2) { var s3 = s1; s1 = s2, s2 = s3, L1 = s2.length; }
+      for (var j = L1; j > 0; j--)
+        for (var i = 0; i <= L1 - j; i++) {
+          sstr = s1.substr(i, j);
+          if (s2.indexOf(sstr) >= 0) return sstr;
+        }
+      return "";
+    }
+    /*  document.writeln(findSubStr("aaa3333", "baa333cc")); //aa333
+     document.writeln(findSubStr("aaaX3333--", "baa333ccX3333333x")); //X3333 */
+    // *********************************************************************字符串找最长连续数字子序列，输出长度
+    let a = '234jjijow333ojiow00000werwe3333333joj234'
+    function findMaxLength(str) {
+      let time1 = Date.now()
+      if (str.length < 1 || typeof str !== 'string') throw TypeError('请输入长度大于一的字符串！')
+      let arr = str.match(/[0-9]{1,}/g)
+      let newArr = []
+      for (let i = 0; i < 10000; i++) {
+        /*  if (arr[i].length > maxL) {
+           maxL = arr[i].length
+           maxI = i
+         } */
+        console.log(i);
+        // newArr[arr[i].length] = arr[i]
+      }
+      let time2 = Date.now()
+      return `最长连续子序列为：${ newArr[newArr.length - 1] }，长度为${ newArr.length - 1 },消耗时间为：${ time2 - time1 }`
+
+    }
+    document.writeln(findMaxLength(a))
+  </script>
+</body>
+
+</html>

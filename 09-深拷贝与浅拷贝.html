@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 深拷贝 - (循环+递归)
+    function sleepCopy(obj) {
+      if (typeof obj !== 'object') throw TypeError('亲，这里仅可以输入对象哦！');
+      let init = obj instanceof Array ? [] : {}
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          init[key] = typeof obj[key] === 'object' ? sleepCopy(obj[key]) : obj[key]
+        }
+      }
+      return init
+    }
+
+    // 深拷贝 - (JSON.parse和JSON.stringfiy) 
+    function sleepCopy2(obj) {
+      if (obj.length < 0 || obj == null) return
+      return JSON.parse(JSON.stringify(obj))
+    }
+    // 浅拷贝 - (concat)
+    function qianCopy1(obj) {
+      if (typeof obj !== 'object') return
+      let newObj = obj instanceof Array ? [] : {}
+      newObj = obj.concat()
+      return newObj
+    }
+    // 浅拷贝 - (slice)
+    function qianCopy1(obj) {
+      if (typeof obj !== 'object') return
+      let newObj = obj instanceof Array ? [] : {}
+      newObj = obj.slice()
+      return newObj
+    }
+  </script>
+</body>
+
+</html>

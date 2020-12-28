@@ -5,10 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .one {
+      width:  0px;
+      height:   0px;
+      border: 100px solid blue;
+      border-left: 30px solid rgba(255, 255, 255, 0);
+      border-top: 30px solid rgba(255, 255, 255, 0);
+      }
+  </style>
 </head>
 
 <body>
+  <div>
+    <div class="one"></div>
+  </div>
   <script>
+    //启用递归尾部调用优化
+/* function fn(n) {
+      if (n < 1) {
+        return
+      }
+      debugger
+      console.log(n);
+      return fn(n - 1)
+      //return fn(n - 1)会被编译器改成goto count(n-1),
+      //在不创建新栈的情况下重复执行该函数
+    }
+    fn(10000); */
+
     let a = new Promise(function(resolve, reject) {
       setTimeout(() => {
         reject(1)
