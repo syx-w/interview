@@ -62,6 +62,16 @@
 
     }
     document.writeln(findMaxLength(a))
+    // *********************************************************************生成一个数值区间在2-32的随机数组
+    function depArr(num) {
+      let ranNum = (Math.random() * 30 + 2).toFixed(0)
+      let newArr = []
+      for (let i = 0; i < num; i++) {
+        let ranNum = (Math.random() * 30 + 2).toFixed(0)
+        newArr.push(ranNum)
+      }
+      document.writeln(newArr)
+    }
   </script>
 </body>
 
