@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    手写两个js继承
+  </div>
+  <script>
+    var foo = 'Hello';
+    (function () {
+      var bar = 'word';
+      // alert(foo + bar);
+    })();
+    alert(foo + bar + '傻叉');
+    /*  function quickpai(arr) {
+       if (arr.length < 2 || arr === null) return arr
+       let rightArr = []
+       let leftArr = []
+       let centerArr = []
+       let cur = arr[0]
+       for (let i = 0; i < arr.length; i++) {
+         if (cur === arr[i]) {
+           centerArr.push(arr[i])
+         } else if (arr[i] < cur) {
+           leftArr.push(arr[i])
+         } else {
+           rightArr.push(arr[i])
+         }
+       }
+       return [...quickpai(leftArr), ...centerArr, ...quickpai(rightArr)]
+     }
+     document.writeln(quickpai([3, 4, 77, 122, 9, 333, 6, 7672, 234, 3, 5, 11])) */
+    //  手写两个js继承
+    /* function a() {
+      let age = 18
+    }
+    a.prototype.eat = function () {
+      console.log('hehe');
+    }
+    function b() {
+    }
+    b.prototype = new a()
+    let c = new b()
+    c.eat() */
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // *******************************************************查找英文文章里出现次数最多的字母和次数
+    function danCi() {
+      let EngliseArc = 'eee wo ai ni hehe  haha  enen  o sdf erf  oo  jrjr cvv  sf'
+      let newArr = []
+      let maxNum = 0
+      let nowArr = []
+      for (let i = EngliseArc.length - 1; i > 0; i--) {
+        let nowN = EngliseArc.charAt(i)
+        if (nowN === ' ') continue
+        newArr[nowN] = newArr[nowN] ? newArr[nowN] + 1 : 1
+        console.log(newArr);
+      }
+      for (let key in newArr) {
+        if (newArr[key] > maxNum) {
+          maxNum = newArr[key]
+          nowArr = key
+        } else if (newArr[key] = maxNum) {
+          newArr.push(key)
+        }
+      }
+      console.log(...nowArr + '出现的次数最多了，出现了' + maxNum + '次');
+    }
+
+    // *********************************************************************两个字符串找最大公共子串
+    //查找两个字符串的最长公共子串
+    function findSubStr(s1, s2) {
+      var S = sstr = "", L1 = s1.length, L2 = s2.length;
+      if (L1 > L2) { var s3 = s1; s1 = s2, s2 = s3, L1 = s2.length; }
+      for (var j = L1; j > 0; j--)
+        for (var i = 0; i <= L1 - j; i++) {
+          sstr = s1.substr(i, j);
+          if (s2.indexOf(sstr) >= 0) return sstr;
+        }
+      return "";
+    }
+    /*  document.writeln(findSubStr("aaa3333", "baa333cc")); //aa333
+     document.writeln(findSubStr("aaaX3333--", "baa333ccX3333333x")); //X3333 */
+    // *********************************************************************字符串找最长连续数字子序列，输出长度
+    let a = '234jjijow333ojiow00000werwe3333333joj234'
+    function findMaxLength(str) {
+      let time1 = Date.now()
+      if (str.length < 1 || typeof str !== 'string') throw TypeError('请输入长度大于一的字符串！')
+      let arr = str.match(/[0-9]{1,}/g)
+      let newArr = []
+      let time2 = Date.now()
+      return `最长连续子序列为：${ newArr[newArr.length - 1] }，长度为${ newArr.length - 1 },消耗时间为：${ time2 - time1 }`
+
+    }
+    /* document.writeln(findMaxLength(a)) */
+    // *********************************************************************生成一个数值区间在2-32的随机数组
+    function depArr(num) {
+      let ranNum = (Math.random() * 30 + 2).toFixed(0)
+      let newArr = []
+      for (let i = 0; i < num; i++) {
+        let ranNum = (Math.random() * 30 + 2).toFixed(0)
+        newArr.push(ranNum)
+      }
+      /* document.writeln(newArr) */
+    }
+
+    /*   Array.prototype.myflat = function (deep) {
+        const arr = this
+        if (!Array.isArray(arr) || Number(deep) < 1 || deep == undefined) return arr
+        for (let i = 0; i < arr.length; i++) {
+          arr.reduce((pre, cur) => {
+            console.log(pre);
+            console.log(pre);
+            return pre.concat()
+          }, [])
+        }
+      } */
+    var aaa = [1, [2, [3, [4]]], 5, 6, [7, [8]]]
+    console.log(aaa.myflat(1));
+
+
+    // *********************************************************************生成一个数值区间在2-32的随机数组
+    function add() {
+      // 第一次执行时，定义一个数组专门用来存储所有的参数
+      var _args = Array.prototype.slice.call(arguments);
+
+      // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
+      var _adder = function () {
+        _args.push(...arguments);
+        return _adder;
+      };
+
+      // 利用toString隐式转换的特性，当最后执行时隐式转换，并计算最终的值返回
+      _adder.toString = function () {
+        return _args.reduce(function (a, b) {
+          return a + b;
+        });
+      }
+      return _adder;
+    }
+
+    add(1)(2)(3)                // 6
+    add(1, 2, 3)(4)             // 10
+    add(1)(2)(3)(4)(5)          // 15
+    add(2, 6)(1)                // 9
+    // *********************************************************************出现第二多
+    //出现最多和第二多 
+    /*   function f(arr) {
+        var length = arr.length;
+        var hash = [];//使用哈希数组
+        for (let i = 0; i < length; i++) {
+          if (!hash[arr[i]]) hash[arr[i]] = 1;//没有初始化的数组元素为undefined，undefined++为NaN
+          else hash[arr[i]]++;
+        }
+        var max = 0;//最多的次数
+        var maxV;//出现最多的元素
+        var second = 0;//第二多的次数
+        var secondV;//出现第二多的元素
+        hash.forEach(function (item, index) {//forEach函数会跳过空元素
+          if (item > max) {  // 将第一大得赋值给第二大得，将当前得给第一大得
+            second = max;
+            secondV = maxV;
+            max = item;
+            maxV = index;//用索引来保存原数组的值
+          } else if (item > second) { // 对比比二大得
+            second = item;
+            secondV = index;
+          }
+        });
+        return { max, maxV, second, secondV };
+      }
+      var arr = [2, 2, 2, 2, 3, 4, 5, 4, 3, 1, 4, 4, 100, 100];
+      var { max, maxV, second, secondV } = f(arr);//ES的元素解构赋值
+      console.log(max, maxV, second, secondV); */
+    // *********************************************************************水仙花
+    //水仙花
+    /* 
+    return: 大于100 小于 1000 得 个位立方加十位立方加百位立方等于当前数
+    */
+    /*     function flower() {
+          let arr = []
+          for(let i = 100; i < 1000; i++) {
+            i = i.toString()
+            if(Math.pow(Number(i[0]), 3) + Math.pow(Number(i[1]), 3) + Math.pow(Number(i[2]), 3) == i) {
+              arr.push(Number(i))
+            }
+          }
+          console.log(arr)
+        }
+       flower(); */
+    // *********************************************************************// 斐波那契
+
+    function fibonacci(n) {
+      function fib(n, v1, v2) {
+        if (n == 1)
+          return v1;
+        if (n == 2)
+          return v2;
+        else
+          return fib(n - 1, v2, v1 + v2)
+      }
+      return fib(n, 1, 1)
+    }
+    function fibonacci1(n) {
+      function fib(n, v1, v2) {
+        if (n == 1) return v1
+        if (n == 2) return v2
+        else return fib(n - 1, v2, v1 + v2)
+      }
+      return fib(n, 1, 1)
+    }
+    fibonacci(30)
+    // ******************************************************************************匹配URL
+    function getUrlParam(sUrl, sKey) {
+      var result = {}
+      sUrl.replace(/\??(\w+)=(\w+)&?/g, function (a, k, v) {
+        result[k] = result[k] ? [...result[k]].concat(v) : v
+      })
+      return sKey ? result[sKey] ? result[sKey] : '' : result
+    }
+    //*****************1000枚硬币中有10枚金币，现在随机取n枚硬币，取到金币的概率是多少？（保留六位小数）
+    function quJinBi(n) {
+      if (n > 990) {
+        return '1.000000';
+      } else {
+        let a1 = 1, a2 = 1;
+        if (n <= 10) {
+          for (let i = 0; i < n; i++) {
+            a1 *= (990 - i);
+            a2 *= (1000 - i);
+          }
+        } else {
+          for (let i = 0; i < 10; i++) {
+            a1 *= (991 - n + i);
+            a2 *= (1000 - i);
+          }
+        }
+        let noGold = a1 / a2;
+        let p = 1 - noGold;
+        return p.toFixed(6);
+      }
+    }
+  </script>
+</body>
+
+</html>

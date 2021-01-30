@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * @param orgin 原始字符串 B = “边叫边练，我喜欢叫练”;
+     * @param serachString 匹配字符串 A=“叫练”
+     **/
+    function indexOf(orgin, serachString) {
+      //返回字符串下标
+      var index = -1;
+      //匹配字符串计数器，用于查询是否匹配到完整字符串
+      var s_index = 0;
+      //全局计数器，用于计算下标
+      var move = 0;
+      for (var i = 0; i < orgin.length; i++) {
+        move++;
+        //如果匹配到“叫”,继续向下开始匹配“练”
+        if (orgin.substr(i, 1) == serachString.substr(s_index, 1)) {
+          s_index++;
+          if (s_index == serachString.length) {
+            index = move - serachString.length;
+            break;
+          }
+        } else {
+          s_index = 0;
+        }
+      }
+      return index;
+    }
+  </script>
+</body>
+
+</html>

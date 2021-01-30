@@ -87,6 +87,7 @@
           /* throw err */
         }
       }
+
       //根据状态，判断执行结果
       if (that.status === PENDING) { // 将回调函数保存起来
         that.callbacks.push({

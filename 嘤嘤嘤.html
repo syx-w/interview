@@ -20,12 +20,16 @@
     let b = a.match(/\$\{.+\}/g)
     console.log(b); */
     // 
-    let a = { name: 'heh', age: 18 }
-      /* for (let key in a) {
-      console.log('key:' + key);
-      console.log('value:' + a[key]);
-    } */
-
+    // let a = { name: 'heh', age: 18 }
+    /* for (let key in a) {
+    console.log('key:' + key);
+    console.log('value:' + a[key]);
+  } */
+    var arr = [2, '2', 'a', 'a', 33, 'sd', 33, 'sd'];
+    var newArr = []
+    // 1. new Set()
+    newArr = Array.from(new Set(arr))
+    document.writeln(newArr);
   </script>
 </body>
 

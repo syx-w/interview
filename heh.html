@@ -6,97 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .Bfc {
-      position: fixed;
+    .main {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 800px;
+      height: 800px;
+      background-color: #0f0;
     }
 
-    .in {
-      margin: 40px;
+    .e {
       width: 200px;
       height: 200px;
       background-color: red;
     }
 
-    .three {
-      margin: 40px;
-      width: 200px;
-      height: 200px;
+    .one {
+      align-self: flex-start;
+    }
+
+    .two {
+      order: -100;
+      align-self: center;
       background-color: blue;
+    }
+
+    .three {
+      align-self: flex-end;
     }
   </style>
 </head>
 
 <body>
-  <div class="out">
-    <div class="Bfc">
-      <div class="in">
-      </div>
-    </div>
-    <div class="three"></div>
+  <div class="main">
+    <div class="one e"></div>
+    <div class="two e"></div>
+    <div class="three e"></div>
   </div>
-  <script>
-    // 1.Promise存在三个状态：pending（等待态）、fulfilled（成功态）、rejected（失败态）
-    const STATUS_PENDING = 'pending'
-    const STATUS_FULFILLED = 'fulfilled'
-    const STATUS_REJECTED = 'rejected'
-    class myPromise {
-      constructor(executor) {
-        // pending为初始态，并可以转化为fulfilled和rejected
-        this.status = STATUS_PENDING
-        this.value = '' // 3
-        this.reason = '' // 4
-
-        let resolve = value => {
-          // 5.
-          if (this.status === STATUS_PENDING) {
-            this.status = STATUS_FULFILLED
-            this.value = value
-          }
-        }
-        let reject = reason => {
-          //6.
-          if (this.status === STATUS_PENDING) {
-            this.status = STATUS_REJECTED
-            this.reason = reason
-          }
-        }
-        // 7.
-        try {
-          executor(resolve, reject);
-        } catch (err) {
-          reject(err);
-        }
-      }
-      // 8.
-      then(onFulfilled = () => { }, onRejected = () => { }) {
-        // 8.1
-        if (this.status === STATUS_FULFILLED) {
-          onFulfilled(this.value)
-        }
-        // 8.2
-        if (this.status === STATUS_REJECTED) {
-          onRejected(this.reason)
-        }
-      }
-    }
-    new myPromise(resolve => {
-      console.log('before resolve')
-      resolve(1)
-    }).then(res => {
-      console.log(res)
-    })
-
-    new myPromise((resolve, reject) => {
-      console.log('before reject')
-      reject('reject error')
-    }).then(res => {
-      console.log(res)
-    }, error => {
-      console.log(error)
-    })
-
-
-  </script>
 </body>
 
 </html>

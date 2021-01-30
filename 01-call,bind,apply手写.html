@@ -17,13 +17,15 @@
       let arg = [...arguments].slice(1)
       function bound() {
         let newRet = [...arguments]
-        console.log(context);
+        // this instanceof bound === true时,说明返回的bound被当做new的构造函数调用
         return that.apply(this instanceof bound ? this : context, arg.concat(newRet))
       }
       bound.prototype = this.prototype
       return bound
     }
 
+    /*  let b = a.bind()
+     let c = new b() */
 
     var foo = {
       value: 1
