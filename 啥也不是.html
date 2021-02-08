@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 对缺少http前缀的url添加前缀， -返回的url不能重复
+    // ["nodejs.org", "http://nodejs.org", "http://bytedance.com"] => ["http://nodejs.org", "http://bytedance.com"]
+    function formaturl(urllist) {
+      function format(url) {
+        if (!/^http\:\/\//.test(url)) {
+          return 'http://' + url
+        }
+        return url
+      }
+      urllist.forEach((item, index) => {
+        urllist[index] = format(item)
+      })
+      let newList = new Set(urllist)
+      return Array.from(newList)
+    }
+    console.log(formaturl(["nodejs.org", "http://nodejs.org", "http://bytedance.com"]));
+  </script>
+</body>
+
+</html>
