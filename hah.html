@@ -6,9 +6,49 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .main {
+      width: 400px;
+      height: 400px;
+      background-color: #000;
+    }
+
+    @media screen and (max-width:768px) {
+      .main {
+        background-color: blue;
+      }
+    }
+
+    @media screen and (min-width:769px) and (max-width: 992px) {
+      .main {
+        background-color: red;
+      }
+    }
+
+    @media screen and (min-width:993px) and (max-width: 1200px) {
+      .main {
+        background-color: skyblue;
+      }
+    }
+
+    @media screen and (min-width:1201px) and (max-width: 1919px) {
+      .main {
+        background-color: green;
+      }
+    }
+
+    @media screen and (min-width: 1920px) {
+      .main {
+        background-color: greenyellow;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div>
+    <div class="main"></div>
+  </div>
   <script>
     // 迭代器
     let arr = [1, 2, 3, 4]
