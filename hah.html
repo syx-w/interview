@@ -3,17 +3,38 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 
 <body>
   <script>
-    let a = [1, 2, 3]; let b = 3
-    let c = Object.defineProperty.prototype.Array
-    let d = Array.isArray(b)
-    console.log(c);
-    console.log(d);
+    // 迭代器
+    let arr = [1, 2, 3, 4]
+    /* let newArr = arr[Symbol.iterator]()
+    console.log(newArr.next());
+    console.log(newArr.next());
+    console.log(newArr.next());
+    console.log(newArr.next());
+    console.log(newArr.next()); */
+    // 生成器 
+    function* generatorFn() { } // 函数声明
+    let generatorFn = function* () { } // 函数表达式
+    function* testGenerator(a) {
+      console.log('a');
+      yield ++a;
+
+      console.log('b');
+      yield ++a;
+
+      console.log('c');
+      return ++a;
+      console.log('d');
+    }
+    testGenerator(5).next()
+
+
   </script>
 </body>
 
