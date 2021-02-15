@@ -3,17 +3,49 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    #list {
+      background-color: blue;
+    }
+
+    ul>li {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
 </head>
 
 <body>
+  <div>
+    <ul id="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
   <script>
-    // let a = /rgb\(([[0-9]{1,2}|([12][012345]{2}))\,]{2}(([0-9]{1,2})|([12][012345]))\)/.test('rgb(3,3,3)')
-    // let a = /[[0-9]{1,2}|([12][012345]{2})\,]{2}/.test('4,4')
-    let a = /rgb\((([0-9]{1,2}|[12][012345]{2})\,){2}[0-9]{1,2}|([12][012345])\)/.test('rgb(255,255,255)')
-    // let a = /(([123]{2}|[45]{2})\,){2}/.test('44,44')
-    console.log(a);
+    let ul = document.querySelector('#list');
+
+    ul.addEventListener('click', function (e) {
+      let target = e.target;
+      while (target.tagName !== 'LI') {
+        if (target.tagName === 'UL') {
+          console.log('target.tagName === UL');
+          target = null;
+          break;
+        }
+        target = target.parentNode;
+      }
+
+      if (target) {
+        console.log('你点击了ui里的li')
+      }
+    })
   </script>
 </body>
 
