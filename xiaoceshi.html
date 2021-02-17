@@ -11,16 +11,20 @@
 <body>
   <div>
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
     </ul>
   </div>
   <script>
     window.onload = function () {
-      let ul = document.querySelector('ul')
-      for (ul.children > )
+      let ul = document.querySelector('ul').children
+      for (let i = 0, l = ul.length; i < l; i++) {
+        ul[i].addEventListener('click', () => {
+          alert(i + 1)
+        })
+      }
     }()
   </script>
 </body>
