@@ -29,23 +29,29 @@
     </ul>
   </div>
   <script>
-    let ul = document.querySelector('#list');
-
-    ul.addEventListener('click', function (e) {
-      let target = e.target;
-      while (target.tagName !== 'LI') {
-        if (target.tagName === 'UL') {
-          console.log('target.tagName === UL');
-          target = null;
-          break;
+    // 快速排序
+    function quickSort(arr) {
+      console.log(arr);
+      if (arr.length < 2) return arr
+      let leftArr = [];
+      let rightArr = [];
+      let curArr = [];
+      let cur = arr[0]
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > cur) {
+          rightArr.push(arr[i])
+        } else if (arr[i] === cur) {
+          curArr.push(arr[i])
+        } else {
+          leftArr.push(arr[i])
         }
-        target = target.parentNode;
       }
-
-      if (target) {
-        console.log('你点击了ui里的li')
-      }
-    })
+      console.log('left' + leftArr);
+      console.log('cur' + curArr);
+      console.log('right' + rightArr);
+      return [...quickSort(leftArr), ...curArr, ...quickSort(rightArr)]
+    }
+    console.log(quickSort([3, 2, 23, 123, 4, 43, 3424, 12]));
   </script>
 </body>
 

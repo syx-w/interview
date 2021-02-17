@@ -4,8 +4,12 @@ function maoPao(arr) {
 
   for (let i = 0; i < arr.length; i++) {
     max = arr[i]
-    for (let j = 0, l = arr.length - i - 1; j++;) {
-      if ( < )
+    for (let j = 0, l = arr.length - i - 1; j < l; j++) {
+
     }
+  }
+
+  function change(a, b) {
+
   }
 }
