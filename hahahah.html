@@ -7,52 +7,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    #list {
-      background-color: blue;
+    .main {
+      display: flex;
+      width: 800px;
+      height: 1000px;
+      background-color: red;
     }
 
-    ul>li {
-      width: 200px;
-      height: 200px;
-      background-color: red;
+    .model1 {
+      height: 500px;
+      width: 400px;
+      background-color: greenyellow;
+
+    }
+
+    .model2 {
+      flex: 1;
+      background-color: blue;
+      height: 500px;
     }
   </style>
 </head>
 
+
 <body>
-  <div>
-    <ul id="list">
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-    </ul>
+  <div class="main">
+    <div class="model1"></div>
+    <div class="model2"></div>
   </div>
-  <script>
-    // 快速排序
-    function quickSort(arr) {
-      console.log(arr);
-      if (arr.length < 2) return arr
-      let leftArr = [];
-      let rightArr = [];
-      let curArr = [];
-      let cur = arr[0]
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > cur) {
-          rightArr.push(arr[i])
-        } else if (arr[i] === cur) {
-          curArr.push(arr[i])
-        } else {
-          leftArr.push(arr[i])
-        }
-      }
-      console.log('left' + leftArr);
-      console.log('cur' + curArr);
-      console.log('right' + rightArr);
-      return [...quickSort(leftArr), ...curArr, ...quickSort(rightArr)]
-    }
-    console.log(quickSort([3, 2, 23, 123, 4, 43, 3424, 12]));
-  </script>
+
 </body>
 
 </html>

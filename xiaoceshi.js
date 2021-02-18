@@ -1,17 +1,19 @@
-function insertsort(arr) {
-  if (arr == null || arr.length == 0) return []
+function quickSort(arr) {
+  if (arr.length < 2) return arr
+  let leftArr = [],
+    rightArr = [],
+    curArr = [arr[0]],
+    cur = arr[0]
   for (let i = 1; i < arr.length; i++) {
-    let min = i
-    for (let j = i + 1; j <= arr.length; j++) {
-      if (arr[min] > arr[j]) {
-        min = j
-      }
-    }
-    if (i !== min) {
-      swap(arr, i, min)
+    if (arr[i] > cur) {
+      rightArr.push(arr[i])
+    } else if (arr[i] === cur) {
+      curArr.push(arr[i])
+    } else {
+      leftArr.push(arr[i])
     }
   }
-  return arr
+  return [...quickSort(leftArr), ...curArr, ...quickSort(rightArr)]
 }
 
 function swap(arr, i, j) {
@@ -19,4 +21,4 @@ function swap(arr, i, j) {
   arr[i] = arr[j]
   arr[j] = temp
 }
-console.log(insertsort([1, 5, 2, 7, 3, 8, 4]));
+console.log(quickSort([1, 5, 2, 7, 3, 8, 4]));

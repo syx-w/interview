@@ -18,7 +18,7 @@ function bubbleSort(arr) {
 }
 
 // 选择排序  (挑一个最小的放到最前面)
-function quickSort(arr) {
+function selectSort(arr) {
   if (arr == null || arr.length == 0) return []
   for (let i = 1; i < arr.length; i++) {
     let min = i
@@ -43,4 +43,22 @@ function insertSort(arr) {
   }
   return arr
 }
-// 
+// 快速排序
+function quickSort(arr) {
+  if (arr.length < 2) return arr
+  let leftArr = [],
+    rightArr = [],
+    curArr = [arr[0]],
+    cur = arr[0]
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > cur) {
+      rightArr.push(arr[i])
+    } else if (arr[i] === cur) {
+      curArr.push(arr[i])
+    } else {
+      leftArr.push(arr[i])
+    }
+  }
+  return [...quickSort(leftArr), ...curArrk, ...quickSort(rightArr)]
+}
+// 归并排序
