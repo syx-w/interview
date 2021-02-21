@@ -1,39 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style scoped>
+  <meta charset="utf-8">
+  <title>菜鸟教程(runoob.com)</title>
+  <script type="text/javascript">
+    function WebSocketTest() {
+      if ("WebSocket" in window) {
+        alert("您的浏览器支持 WebSocket!");
+        // 打开一个 web socket
+        var ws = new WebSocket("ws://localhost:9998/echo");
+        ws.onopen = function () {
+          // Web Socket 已连接上，使用 send() 方法发送数据
+          ws.send("发送数据");
+          alert("数据发送中...");
+        };
+        ws.onmessage = function (evt) {
+          var received_msg = evt.data;
+          alert("数据已接收...");
+        };
+        ws.onclose = function () {
+          // 关闭 websocket
+          alert("连接已关闭...");
+        };
+      } else {
+        // 浏览器不支持 WebSocket
+        alert("您的浏览器不支持 WebSocket!");
+      }
+    }
+  </script>
 
-  </style>
 </head>
 
 <body>
-  <script>
-    // 循环题
-    /* console.log('script start');
-    setTimeout(function () {
-      console.log('setTimeout');
-    }, 0);
-    Promise.resolve().then(function () {
-      console.log('promise1');
-    }).then(function () {
-      console.log('promise2');
-    });
-    console.log('script end'); */
 
-    // promise考题
-    Promise.resolve(1)
-      .then((x) => x + 1)
-      .then((x) => { throw new Error('My Error') })
-      .catch(() => 1)
-      .then((x) => x + 1)
-      .then((x) => console.log(x))
-      .catch(() => 1)
-  </script>
+  <div id="sse">
+    <a href="javascript:WebSocketTest()">运行 WebSocket</a>
+  </div>
 </body>
 
 </html>
