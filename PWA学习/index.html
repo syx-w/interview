@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin-top: 100px;
+    }
+
+    .child {
+      width: 50px;
+      height: 50px;
+      background-color: green;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Echo Test</h1>
+  <input id="sendTxt" type="text">
+  <button id="sendBtn">发送</button>
+  <div id="recv"></div>
+  <script type="text/javascript">
+    var websocket = new WebSocket("ws://echo.websocket.org/");
+    // 引入websocket
+    websocket.onopen = function () {
+      console.log('websocket open');
+      document.getElementById("recv").innerHTML = "Connected";
+    }
+    // 结束websocket
+    websocket.onclose = function () {
+      console.log('websocket close');
+    }
+    // 接受到信息
+    websocket.onmessage = function (e) {
+      console.log(e.data);
+      document.getElementById("recv").innerHTML = e.data;
+    }
+    // 点击发送webscoket
+    document.getElementById("sendBtn").onclick = function () {
+      var txt = document.getElementById("sendTxt").value;
+      websocket.send(txt);
+    }
+  </script>
+
+</body>
+
+</html>
