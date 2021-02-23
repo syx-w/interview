@@ -6,38 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    .main {
-      display: flex;
-      justify-content: space-between;
-
-      width: 800px;
-      height: 1000px;
-      background-color: red;
-    }
-
-    .model1 {
-      height: 500px;
-      width: 300px;
-      background-color: greenyellow;
-      box-sizing: border-box;
-    }
-
-    .model2 {
-      width: 300px;
-      background-color: blue;
-      height: 500px;
-    }
-  </style>
 </head>
 
-
 <body>
-  <div class="main">
-    <div class="model1"></div>
-    <div class="model2"></div>
-  </div>
+  <script>
+    let str = 'fdsfsdzffdfdddfsdsds'
 
+    let arr = []
+    const s = str.split('')
+    let total = 0; // 长度
+    let maxStr = '' // 最长不重复长度的字符串
+    for (var i = 0; i < s.length; i++) {
+      const ele = s[i]
+      const idx = arr.indexOf(ele)
+      if (idx > -1) {
+        arr = arr.slice(idx + 1)
+      }
+      arr.push(ele)
+      if (arr.length > total) {
+        maxStr = arr.join('')
+        total = arr.length
+      }
+    }
+
+    console.log(total)
+    console.log(maxStr)
+  </script>
 </body>
 
 </html>
