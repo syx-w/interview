@@ -17,8 +17,11 @@ var getName = function () {
 function getName() {
   console.log('huangzesi')
 }
-fn().getName();
-fn.getName();
-getName();
-new fn.getName();
-new new fn.getName();
+// 依次以下代码分别输出什么 fn().getName(); fn.getName(); getName(); new fn.getName(); new new fn.getName();
+/* 
+fn().getName()   huangzesi 
+fn.getName() liudehua
+getName()  zhouxingci
+new fn.getName()  zhangxueyou
+new new fn.getName() zhangxueyou
+*/
