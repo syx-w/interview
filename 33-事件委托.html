@@ -1,31 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    .red {
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background: pink;
+      line-height: 60px;
+      text-align: center;
+      color: white;
+    }
+
+    .content {
       width: 200px;
-      height: 200px;
-      background-color: red;
+      height: 1000px;
+      border: 2px solid green;
+      background: linear-gradient(#fff, #000);
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+      margin: 60px auto 0;
+    }
+
+    img {
+      width: 100%;
+      height: 180px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      display: none;
+      z-index: -1
+    }
+
+    p {
+      line-height: 30px;
+      text-align: center;
+      display: none
     }
   </style>
 </head>
 
 <body>
   <div>
-
+    <div>首页</div>
+    <img
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536127130721&di=f192c5e1749dd2aa73b8a5b7297bd0cc&imgtype=0&src=http%3A%2F%2Fs10.sinaimg.cn%2Fmiddle%2F4ac1551583fc20f4db299%26690"
+      alt="">
+    <div></div>
+    <p>加载中...</p>
   </div>
   <script>
-    window.onload = (function () {
-      let a = document.querySelector('div')
-      a.innerHTML = '<div class = "red"><div/>'
-    })()
-
-  </script>
+    var oImg = document.getElementsByTagName('img')[0];
+    var oP = document.getElementsByTagName('p')[0];
+    var oHeader = document.getElementsByClassName('header')[0];
+    var oContent = document.getElementsByClassName('content')[0];
+    var screenH = document.documentElement.clientHeight || document.body.clientHeight;
+    var startY, moveY;
+    oContent.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].pageY;
+    })
+    oContent.addEventListener('touchmove', (e) => { moveY = e.touches[0].pageY - startY; });
+    oContent.addEventListener('touchend', () => {
+      if (moveY > 0) {
+        //下拉
+        oImg.style.display = 'block'; if (moveY > 180) moveY = 180;
+        oContent.style.marginTop = moveY + oHeader.clientHeight + 'px';
+        //刷新数据后再走下面的
+        var timer = setInterval(() => {
+          moveY -= 1; if (moveY <= 0) {
+            oImg.style.display = 'none'; clearInterval(timer); moveY = 0
+          } oContent.style.marginTop = moveY + oHeader.clientHeight + 'px';
+        }, 4)
+      } else {
+        //上拉
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop + screenH + 20 >= oContent.scrollHeight) {
+          oP.style.display = 'block'
+          //加载下条数据
+          setTimeout(() => {
+            oP.style.display = 'none'
+            oContent.style.height = oContent.clientHeight + 300 + 'px'
+          }, 500)
+        }
+      }
+    })</script>
 </body>
 
 </html>
