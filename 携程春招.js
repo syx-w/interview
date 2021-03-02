@@ -37,7 +37,7 @@ console.log(a.constructor === A);
 console.log(a.constructor.prototype === a.__proto__);
 console.log(a.constructor.prototype.__proto__ === B); */
 // 第三题
-const A = function () {
+/* const A = function () {
   this.value = 1
 }
 const B = function () {
@@ -49,4 +49,4 @@ const C = function () {
 const c = new C()
 A.prototype = new B()
 C.prototype = new A();
-console.log(c.__proto__.value, c.__proto__.constructor);
+console.log(c.__proto__.value, c.__proto__.constructor); */
