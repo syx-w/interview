@@ -1,0 +1,61 @@
+[33m8ce362c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{0}: commit: 打卡
+[33m64e4cc3[m HEAD@{1}: commit: 工作第二天
+[33m9e0800f[m HEAD@{2}: commit: 入职第一天
+[33mcd10749[m HEAD@{3}: commit: 周日
+[33m87edf1e[m HEAD@{4}: commit: V Dom
+[33mec019ee[m HEAD@{5}: commit: 作用域
+[33mad29bab[m HEAD@{6}: commit: 面试经历
+[33mb402f31[m HEAD@{7}: commit: 面试经历
+[33m1c1fcb0[m HEAD@{8}: commit: 初九
+[33m9ce764d[m HEAD@{9}: commit: 下午
+[33med5e6ee[m HEAD@{10}: commit: 新的一天
+[33m05a3a5e[m HEAD@{11}: commit: 新的一天
+[33mad1d469[m HEAD@{12}: commit: 哈哈
+[33m5725c75[m HEAD@{13}: commit: 面试的一天
+[33m7f73be5[m HEAD@{14}: commit: 初六
+[33m079c76d[m HEAD@{15}: commit: promise
+[33m8b6c516[m HEAD@{16}: commit: 失败的一天
+[33ma728a8f[m HEAD@{17}: commit: 失败的一天
+[33m95830d6[m HEAD@{18}: commit: 闭包
+[33m1987a9e[m HEAD@{19}: commit: 嘿嘿
+[33md73f8ea[m HEAD@{20}: commit: 嘿嘿
+[33mbd37983[m HEAD@{21}: commit: 虾皮
+[33med50b85[m HEAD@{22}: commit: 哈哈
+[33m80acb4f[m HEAD@{23}: commit: 手撕代码
+[33m8a61fdd[m HEAD@{24}: commit: 初三晚上
+[33mc629d87[m HEAD@{25}: commit: 初三晚上
+[33m46a028c[m HEAD@{26}: commit: 嘿嘿
+[33mef1cac1[m HEAD@{27}: commit: 初三
+[33m630c18c[m HEAD@{28}: commit: 1
+[33ma29b693[m HEAD@{29}: commit: 情人节
+[33m939f111[m HEAD@{30}: commit: 情人节
+[33m1f3f10e[m HEAD@{31}: commit: 初三，情人节
+[33mb4f6650[m HEAD@{32}: commit: 初二呢
+[33mfc59f63[m HEAD@{33}: commit: 2
+[33m1d83c67[m HEAD@{34}: commit: 面试
+[33m8626fb1[m HEAD@{35}: commit: ‘初二
+[33m3fd6c03[m HEAD@{36}: commit: 2
+[33m0d28755[m HEAD@{37}: commit: 第二次
+[33me25fc07[m HEAD@{38}: commit: 删除没用的
+[33m70f91fd[m[33m ([m[1;32mdev[m[33m)[m HEAD@{39}: checkout: moving from dev to master
+[33m70f91fd[m[33m ([m[1;32mdev[m[33m)[m HEAD@{40}: reset: moving to 70f91fd
+[33m3f9efbc[m HEAD@{41}: reset: moving to 3f9efbc
+[33m6de8d32[m[33m ([m[1;31morigin/dev[m[33m)[m HEAD@{42}: checkout: moving from master to dev
+[33m70f91fd[m[33m ([m[1;32mdev[m[33m)[m HEAD@{43}: commit: 早上提交
+[33medd7acb[m HEAD@{44}: commit: keyi
+[33m3f9efbc[m HEAD@{45}: commit: keyi
+[33m96a0eea[m HEAD@{46}: commit: keyi
+[33m8a44287[m HEAD@{47}: commit: 准备面试
+[33m07bea0e[m HEAD@{48}: commit: 2月8日
+[33m6fc4901[m HEAD@{49}: checkout: moving from dev to master
+[33m6de8d32[m[33m ([m[1;31morigin/dev[m[33m)[m HEAD@{50}: commit: 2月8日提交
+[33m3dcb279[m HEAD@{51}: commit: 面试题上传
+[33mbd922d0[m HEAD@{52}: checkout: moving from master to dev
+[33m6fc4901[m HEAD@{53}: commit: 新的开始，加油
+[33m50a45d4[m HEAD@{54}: commit: 1月30日
+[33m1241230[m HEAD@{55}: commit: 11
+[33me02e1ce[m HEAD@{56}: commit: 测试
+[33mbd922d0[m HEAD@{57}: checkout: moving from dev to master
+[33mbd922d0[m HEAD@{58}: checkout: moving from master to dev
+[33mbd922d0[m HEAD@{59}: commit: 第二次提交
+[33mcda2de2[m HEAD@{60}: commit (initial): 第一次
