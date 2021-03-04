@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .left {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            background-color: red;
+        }
+        .right {
+            height: 200px;
+            width: 200px;
+            border: 2px dashed blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div draggable="true" class="left"></div>
+        <div class="right"></div>
+    </div>
+    <script>
+        window.onload = (function(){
+            let left = document.querySelector('.left')
+            let right = document.querySelector('.right')
+            left.addEventListener('dragstart', handleDragStart);
+            function handleDragStart(e) {
+                
+            }
+        })()
+    </script>
+</body>
+</html>
