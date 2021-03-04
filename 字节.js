@@ -1,10 +1,15 @@
-var func1 = x => x;
-var func2 = x => {
-  return x
-};
-var func3 = x => ({
-  x
-});
-console.log(func1(1));
-console.log(func2(1));
-console.log(func3(1));
+let obj = {};
+let handler = {
+  get(target, property) {
+    console.log(`${property} 被读取`);
+    return property in target ? target[property] : 3;
+  },
+  set(target, property, value) {
+    console.log(`${property} 被设置为 ${value}`);
+    target[property] = value;
+  }
+}
+
+let p = new Proxy(obj, handler);
+p.name = 'tom' //name 被设置为 tom
+p.age; //age 被读取 
