@@ -1,0 +1,12 @@
+{
+  "name" : "豆瓣APP-PWA",
+  "short_name": "豆瓣APP",
+  "start_url": "/index.html",
+  "icons": [
+    {
+      "src" : "images/女2.jpg",
+      "size" : "144X144",
+      "type"
+    }
+  ]
+}
