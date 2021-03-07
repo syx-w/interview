@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="hehe">
+    <div class="one"></div>
+    <div class="two"></div>
+  </div>
+  <button onclick="clickBtn()">1</button>
+  <script>
+    /* 
+    防抖,延迟执行函数
+    */
+    function debounce(fun, time) {
+      let timer = null
+      return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fun.apply(this, arguments);
+        }, time)
+      }
+    }
+
+    /* 
+    节流：一定时间最多执行一次函数
+    */
+    function throttle1(fun, time) {
+      let flag = true;
+      return function () {
+        if (!flag) return;
+        flag = false;
+        setTimeout(() => {
+          fun.apply(this, arguments);
+          flag = true;
+        }, time)
+      }
+    }
+    // 时间戳版本
+    function throttle2(fun, time) {
+      let oldTime = Date.now();
+      return function () {
+        let nowTime = Date.now();
+        if (nowTime - oldTime > time) {
+          fun.apply(this, arguments);
+          oldTime = nowTime;
+        }
+      }
+    }
+
+
+    function clickBtn(arg, arg1) {
+      console.log(1);
+    }
+    window.addEventListener('click', throttle2(clickBtn, 500))
+
+
+    /*
+    ^([1-9][0-9]*)+(\.[0-9]{1,2})?$
+    ^((\-)?\d)+(\.\d{1,2})$
+    ^((\-|\+)?\d)+(\.\d)?$
+    ^\d+(\.\d{2})$
+    ^\d + (\.\d{1,2,3})?$
+    
+    
+    
+    */
+  </script>
+</body>
+
+</html>

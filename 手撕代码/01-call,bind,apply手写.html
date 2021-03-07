@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.bind = function (context) {
+      if (typeof this !== 'function') {
+        throw new TypeError('只能函数才能调用bind哦！')
+      }
+      let that = this;
+      let arg = [...arguments].slice(1)
+      function bound() {
+        let newRet = [...arguments]
+        // this instanceof bound === true时,说明返回的bound被当做new的构造函数调用
+        return that.apply(this instanceof bound ? this : context, arg.concat(newRet))
+      }
+      bound.prototype = this.prototype
+      return bound
+    }
+
+    /*  let b = a.bind()
+     let c = new b() */
+
+    var foo = {
+      value: 1
+    };
+    function bar(name, age) {
+      this.habit = 'shopping';
+      console.log(this.value);  // undefined   因为this指向了obj，因为new会让指针指向实例
+      console.log(name);  // daisy
+      console.log(age);  // 18
+    }
+
+    bar.prototype.friend = 'kevin';
+
+    var bindFoo = bar.bind(foo, 'daisy');
+    var obj = new bindFoo('18');
+    // var obj = new bindFoo();
+    console.log(obj.habit);  // shopping
+    console.log(obj.friend); // kevin
+  </script>
+  <script>
+    // 1.call
+    Function.prototype.myCall = function (content) {
+      content = content || window
+      content.fn = this
+      console.log(...arguments);
+      let arg = [...arguments].slice(1)
+      let res = content.fn(...arg)
+      delete content.fn
+      return res
+    }
+    // 2.apply
+    Function.prototype.myApply = function (context) {
+      context = context || window
+      context.fn = this
+      console.log(arguments[1]);
+      let arg = arguments[1] || [];
+      let res = context.fn(...arg)
+      delete context.fn
+      return res
+    }
+    // 3.bind
+    Function.prototype.myBind = function (context) {
+      context = context || window
+      context.fn = this
+      console.log([...arguments]);
+      let arg = [...arguments].slice(1)
+      let res = context.fn(...arg)
+      delete context.fn
+      return () => res
+    }
+    function person(fm, go) {
+      return this.name + '今年' + this.age + '岁了！' + '来自' + fm + '去往' + go
+    }
+    var bd = { age: 99, name: 'li' }
+    console.log(bd.toString());
+    /* console.log(person.myCall(bd, '保定', '唐山'))
+    console.log(person.myApply(bd, ['保定', '唐山']))
+    console.log(person.myBind(bd, '保定', '唐山')()) */
+
+  </script>
+</body>
+
+</html>

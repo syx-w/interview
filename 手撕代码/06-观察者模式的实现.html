@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+    后者相对于前者而言，多了一个类似于调度中心的存在，后者能集中管理多个主题对象，并且观察者和发布者之间是不存在直接关系的，在调度中心可以很方便的实现分发管理，这个特性让发布者-订阅者模式变得更加灵活。
+    */
+    /* 
+    观察者模式
+    */
+    class Observer {
+      constructor(label) {
+        this.label = label
+      }
+      update() {
+        console.log(`update${ this.label }`)
+      }
+    }
+
+    class Target {
+      constructor() {
+        this.observerList = []
+      }
+
+      add(observer) {
+        this.observerList.push(observer)
+      }
+
+      remove(observer) {
+        this.observerList = this.observerList.filter(ob => ob !== observer)
+      }
+
+      notify() {
+        this.observerList.forEach(ob => {
+          ob.update()
+        })
+      }
+    }
+
+    let tar = new Target()
+
+    for (let i = 0; i < 10; i++) {
+      tar.add(new Observer(i))
+    }
+
+    tar.notify()//打印update1到update10
+
+/* 
+发布者订阅者模式
+*/
+
+class Publisher {
+    constructor() {
+        this.subscribers = {}
+        this.cache = {}
+    }
+
+    add(type, fn) {
+        if (Object.prototype.toString.call(fn) !== '[object Function]') return
+        this.subscribers[type] ? this.subscribers[type].push(fn) : this.subscribers[type] = [fn]
+        return this
+    }
+
+    publish(type, theme) {
+        //存储主题信息
+        this.cache[type] ? this.cache[type].push(theme) : this.cache[type] = [theme]
+        let subscribers = this.subscribers[type]
+        if (!subscribers || !subscribers.length) {
+            console.warn('no subscriber in subscribers.')
+            return this
+        }
+        subscribers.forEach(fn => fn.call(this, theme))
+        return this
+    }
+
+    unbind(type, fn) {
+        this.subscribers[type] = this.subscribers[type].filter(item => item !== fn)
+        return this
+    }
+
+    history(type, fn) {
+        let cache = this.cache[type] || []
+        cache.forEach(item => fn.call(this, item))
+        return this
+    }
+}
+
+let sub1 = data => {
+    console.log(`sub1${data}`)
+}
+
+let sub2 = data => {
+    console.log(`sub2${data}`)
+}
+
+let sub3 = data => {
+    console.log(`sub3${data}`)
+}
+
+let publisher = new Publisher()
+
+publisher.add('click', sub1).add('click', sub2).add('change', sub3)
+
+publisher.publish('click', '第一次click').publish('change', '第一次change')
+
+publisher.unbind('click', sub1).publish('click', '第二次点击').history('click', data => {
+    console.log('history' + data)
+})
+
+
+/***  
+sub1第一次click
+sub2第一次click
+sub3第一次change
+sub2第二次点击
+history第一次click
+history第二次点击
+***/
+
+
+    /**
+   * 发布订阅模式(观察者模式)
+   * handles: 事件处理函数集合
+   * on: 订阅事件  // 添加事件
+   * emit: 发布事件 // 每个订阅事件都执行一次
+   * off: 删除事件  //
+  **/
+
+    class PubSub {
+      constructor() {
+        this.handles = {};
+      }
+
+      // 订阅事件
+      on(eventType, handle) {
+        // 判断函数集合里是否有该函数
+        if (!this.handles.hasOwnProperty(eventType)) {
+          this.handles[eventType] = [];
+        }
+        // 传入是否是函数
+        if (typeof handle == 'function') {
+          this.handles[eventType].push(handle);
+        } else {
+          throw new Error('缺少回调函数');
+        }
+        return this;
+      }
+
+      // 发布事件
+      emit(eventType, ...args) {
+        if (this.handles.hasOwnProperty(eventType)) {
+          this.handles[eventType].forEach((item, key, arr) => {
+            item.apply(null, args);
+          })
+        } else {
+          throw new Error(`"${ eventType }"事件未注册`);
+        }
+        return this;
+      }
+
+      // 删除事件
+      off(eventType, handle) {
+        // 判断传入的是否是函数 是否注册
+        if (!this.handles.hasOwnProperty(eventType)) {
+          throw new Error(`"${ eventType }"事件未注册`);
+        } else if (typeof handle != 'function') {
+          throw new Error('缺少回调函数');
+        } else {
+          // 遍历 如果找到了就删除
+          this.handles[eventType].forEach((item, key, arr) => {
+            console.log(item);
+            if (item == handle) {
+              arr.splice(key, 1);
+            }
+          })
+        }
+        return this; // 实现链式操作
+      }
+    }
+
+    // 下面做一些骚操作
+    /*    let callback = function () {
+         console.log('you are so nice');
+       }
+   
+       let pubsub = new PubSub();
+       pubsub.on('completed', (...args) => {
+         console.log(args.join(' ')); // what a fucking day
+       }).on('completed', callback).on('completed', callback);// you are so nice
+   
+       pubsub.emit('completed', 'what', 'a', 'fucking day'); //将on展示出来
+       console.dir(pubsub);
+       pubsub.off('completed', callback);// 删除 you are so nice
+       console.dir(pubsub);
+       pubsub.emit('completed', 'fucking', 'again'); // fucking again  */
+
+
+    /* what a fucking day
+     you are so nice
+     fucking again */
+  </script>
+</body>
+
+</html>
