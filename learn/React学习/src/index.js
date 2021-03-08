@@ -1,11 +1,1 @@
-function bytesLength(str) {
-  var count = str.length;
-  for (var i = 0; i < str.length; i++) {
-    if (str.charCodeAt(i) > 255) {
-      count++;
-      console.log(str.length)
-    }
-  }
-}
-var by = bytesLength("wode 1名字")
-console.log('i like you');
+console.log('like');

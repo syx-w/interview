@@ -8,8 +8,16 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: 'index.html' // 生成的内存中的首页的名字
 })
 module.exports = {
+  entry: './index.js',
   mode: 'development',
   plugins: [
-    htmlPlugin
-  ]
+    htmlPlugin,
+
+  ],
+  rules: [{
+    test: '/\.html$/',
+    use: [{
+      loader: 'html-loader'
+    }]
+  }]
 }
