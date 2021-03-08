@@ -7,4 +7,5 @@ function bytesLength(str) {
     }
   }
 }
-var by = bytesLength("wode 名字")
+var by = bytesLength("wode 1名字")
+console.log('i like you');
