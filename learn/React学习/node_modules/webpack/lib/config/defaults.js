@@ -95,7 +95,7 @@ const A = (obj, prop, factory) => {
 			const item = value[i];
 			if (item === "...") {
 				if (newArray === undefined) {
-					newArray = i > 0 ? value.slice(0, i - 1) : [];
+					newArray = value.slice(0, i);
 					obj[prop] = /** @type {T[P]} */ (/** @type {unknown} */ (newArray));
 				}
 				const items = /** @type {any[]} */ (/** @type {unknown} */ (factory()));
@@ -562,10 +562,15 @@ const applyOutputDefaults = (
 	F(output, "uniqueName", () => {
 		const libraryName = getLibraryName(output.library);
 		if (libraryName) return libraryName;
+		const pkgPath = path.resolve(context, "package.json");
 		try {
-			const packageInfo = require(`${context}/package.json`);
+			const packageInfo = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 			return packageInfo.name || "";
 		} catch (e) {
+			if (e.code !== "ENOENT") {
+				e.message += `\nwhile determining default 'output.uniqueName' from 'name' in ${pkgPath}`;
+				throw e;
+			}
 			return "";
 		}
 	});

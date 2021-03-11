@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <div class="grandparent" id="grandparent">
+      <div class="parent" id="parent1">
+        <div class="child" id="child1"></div>
+        <div class="child" id="child2"></div>
+      </div>
+      <div class="parent" id="parent2">
+        <div class="child" id="child3"></div>
+        <div class="child" id="child4"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const gp = document.getElementById("grandparent");
+    let myQueue = [];
+    let nodes = [];
+    myQueue.push(gp);
+    while (myQueue.length > 0) {
+      let front = myQueue.shift();
+      nodes.push(front);
+      Array.from(front.children).forEach((e) => myQueue.push(e));
+    }
+
+    console.log(nodes);
+  </script>
+</body>
+
+</html>
